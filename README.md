@@ -25,7 +25,7 @@ At the moment, only downloading models is supported. In the future, it may be po
 To import the downloaded model, look for the Blender script on Google. Perhaps later, when I implement the conversion of the model into an editable format, this item will be removed.
 <br />
 
-This is my first serious application in C #, so the code can be crappy in places or not fully optimized. I originally wrote it for .NET 5.0, but later decided to switch to .NET Framework 4.8 for better compatibility.
+This is my first serious application in C#, so the code can be crappy in places or not fully optimized. I originally wrote it for .NET 5.0, but later decided to switch to .NET Framework 4.8 for better compatibility.
 <br />
 
 ### Thanks
