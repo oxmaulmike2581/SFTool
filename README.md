@@ -26,3 +26,8 @@ To import the downloaded model, look for the Blender script on Google. Perhaps l
 <br />
 
 This is my first serious application in C #, so the code can be crappy in places or not fully optimized. I originally wrote it for .NET 5.0, but later decided to switch to .NET Framework 4.8 for better compatibility.
+<br />
+
+### Thanks
+* @StrixG - for help
+
