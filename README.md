@@ -7,6 +7,8 @@ At the moment, only downloading models is supported. In the future, it may be po
 <br />
 <hr />
 
+![Image](https://cdn.discordapp.com/attachments/788775113138110515/849313803355160596/unknown.png)
+
 ### Usage:
 * SFTool.exe model_hash output_dir
 
