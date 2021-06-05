@@ -18,7 +18,7 @@ At the moment, only downloading models is supported. In the future, it may be po
 
 ### Requirements:
 
-* .NET Framework 4.8
+* .NET Framework 4.7.2
 
 <hr />
 
