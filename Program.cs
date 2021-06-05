@@ -21,13 +21,30 @@ namespace SketchfabToolCLI
             // Define variables
             string configBaseUrl = "https://sketchfab.com/i/models/";
             Dictionary<string, byte[]> files = new Dictionary<string, byte[]>();
+            string modelHash;
+
+            // ==================================================
+
+            // Support for whole link
+            if (args[0].Contains("https://sketchfab.com/"))
+            {
+                // Split the link with "-" as delimiter
+                string[] linkData = args[0].Split(Convert.ToChar("-"));
+
+                // Read the last element of the array
+                modelHash = linkData.Last();
+            }
+            else
+            {
+                modelHash = args[0];
+            }
 
             // Start a stopwatch
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
             // Print model ID
-            Console.WriteLine("Got hash: {0}", args[0]);
+            Console.WriteLine("Got hash: {0} ({1} chars)", modelHash, modelHash.Length);
 
             // Create an instances of required classes
             Downloader dn = new Downloader();
@@ -36,9 +53,9 @@ namespace SketchfabToolCLI
             // ==================================================
 
             // Get filtered config with general model data
-            Dictionary<string, string> modelConfig = dn.GetConfig(configBaseUrl + args[0], "model");
-            Dictionary<string, SortedDictionary<int, string>> texturesConfig = dn.GetConfig(configBaseUrl + args[0] + "/textures", "textures");
-            Dictionary<string, string> animsConfig = dn.GetConfig(configBaseUrl + args[0] + "/animations", "anims");
+            Dictionary<string, string> modelConfig = dn.GetConfig(configBaseUrl + modelHash, "model");
+            Dictionary<string, SortedDictionary<int, string>> texturesConfig = dn.GetConfig(configBaseUrl + modelHash + "/textures", "textures");
+            Dictionary<string, string> animsConfig = dn.GetConfig(configBaseUrl + modelHash + "/animations", "anims");
 
             // Check for data availability
             if (modelConfig.Count > 0)
@@ -142,8 +159,17 @@ namespace SketchfabToolCLI
 
                 // Make separated directories for model, textures and animations and move corresponding files to them
                 Directory.CreateDirectory(outputModelDir);
-                Directory.CreateDirectory(outputTexturesDir);
-                Directory.CreateDirectory(outputAnimsDir);
+
+                // Create a directory only if corresponding config is present
+                if (texturesConfig.Count > 0)
+                {
+                    Directory.CreateDirectory(outputTexturesDir);
+                }
+                
+                if (animsConfig.Count > 0)
+                {
+                    Directory.CreateDirectory(outputAnimsDir);
+                }
 
                 // Move model files
                 File.Move("file.osgjs", Path.Combine(outputModelDir, "file.osgjs"));
