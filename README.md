@@ -11,7 +11,7 @@ At the moment, only downloading models is supported. In the future, it may be po
 * SFTool.exe model_hash output_dir
 
 ##### Where:
-* model_hash - last 32 characters from URL
+* model_hash - the whole URL or last 26/27/32 characters from URL (length depends on model; some models have unique hashes).
 * output_dir *(optional)* - path where output files should be located
 
 <hr />
