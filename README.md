@@ -3,25 +3,34 @@ Tool for working with models from Sketchfab
 <br />
 <br />
 At the moment, only downloading models is supported. In the future, it may be possible to add support for converting to Autodesk FBX format.
-<br />
-<br />
+
 <hr />
 
 ### Usage:
 * SFTool.exe -h model_hash -o output_dir
 * SFTool.exe -l links_file -o output_dir
 
-##### Where:
-* model_hash - the whole URL or last 26/27/32 characters from URL (length depends on model; some models have unique hashes).
-* links_file - a text file with links or hashes (one link/hash per line)
-* output_dir *(optional)* - path where output files should be located
+<strong>Arguments:</strong>
+<ul>
+  <li>-h:<br />
+  &#9;Model hash or whole link.
+  </li>
+  <li>-l:<br />
+  &#9;Path to the file with list of links to batch download.
+  </li>
+  <li>-o <em>(optional)</em>:<br />
+  &#9;Path to the output directory. If does not specified, the current directory will used.
+  </li>
+</ul>
 
 <hr />
 
 ### Requirements:
-* .NET Framework 4.7.2
+* <a href="https://dotnet.microsoft.com/download/dotnet-framework/net472" target="_blank">.NET Framework 4.7.2</a>
 
 <hr />
+
+### Notes:
 
 To import the downloaded model, look for the Blender script on Google. Perhaps later, when I implement the conversion of the model into an editable format, this item will be removed.
 <br />
@@ -30,12 +39,12 @@ This is my first serious application in C#, so the code can be crappy in places 
 
 <hr />
 
-### Thanks
-* @StrixG - for help
+### Thanks:
+* <a href="https://github.com/StrixG/" target="_blank">@StrixG</a> - for help
 
 <hr />
 
-### Changelog
+### Changelog:
 <strong>1.0.0.2:</strong>
 <ol>
   <li>Replaced the exception with the message to the console, in the case when the output folder already exists</li>
