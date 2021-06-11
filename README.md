@@ -18,7 +18,7 @@ At the moment, only downloading models is supported. In the future, it may be po
   <li>-l:<br />
   &#9;Path to the file with list of links to batch download.
   </li>
-  <li>-o <em>(optional)</em>:<br />
+  <li>-o <em>(optional)</em>: <br />
   &#9;Path to the output directory. If does not specified, the current directory will used.
   </li>
 </ul>
