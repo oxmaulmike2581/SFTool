@@ -7,8 +7,8 @@ At the moment, only downloading models is supported. In the future, it may be po
 <hr />
 
 ### Usage:
-* SFTool.exe -h model_hash -o output_dir
-* SFTool.exe -l links_file -o output_dir
+* SFTool.exe -h <em>model_hash</em> -o <em>output_dir</em>
+* SFTool.exe -l <em>links_file</em> -o <em>output_dir</em>
 
 <strong>Arguments:</strong>
 <ul>
@@ -31,6 +31,8 @@ At the moment, only downloading models is supported. In the future, it may be po
 <hr />
 
 ### Notes:
+The BINZ format is new to Sketchfab. It looks like it's just an additional layer of encryption on top of the existing OSGJS and BIN files instead of GZip compression. Work is underway to study it and create a decoder, but it is too early to talk about the timing of its implementation. 
+<br />
 
 To import the downloaded model, look for the Blender script on Google. Perhaps later, when I implement the conversion of the model into an editable format, this item will be removed.
 <br />
@@ -45,6 +47,15 @@ This is my first serious application in C#, so the code can be crappy in places 
 <hr />
 
 ### Changelog:
+<strong>1.0.0.3:</strong>
+<ol>
+  <li>Fixed saving error when trying to download a model in the new encrypted BINZ format</li>
+  <li>Added a warning if the downloaded model is in BINZ format</li>
+</ol>
+<p>
+  The BINZ format is new to Sketchfab. It looks like it's just an additional layer of encryption on top of the existing OSGJS and BIN files instead of GZip compression. Work is underway to study it and create a decoder, but it is too early to talk about the timing of its implementation.
+</p>
+<br />
 <strong>1.0.0.2:</strong>
 <ol>
   <li>Replaced the exception with the message to the console, in the case when the output folder already exists</li>
