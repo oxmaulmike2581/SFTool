@@ -188,9 +188,19 @@ namespace SFTool
             byte[] mfwbin = dn.GetFileData(modelConfig["mfwbinUrl"]);
 
             // Decompressing model and storing in resulting array
-            files.Add("file.osgjs", gz.Decompress(osgjs));
-            files.Add("model_file.bin", gz.Decompress(mfbin));
-            files.Add("model_file_wireframe.bin", gz.Decompress(mfwbin));
+            if (!modelConfig["osgjsUrl"].Contains("file.binz"))
+            {
+                files.Add("file.osgjs", gz.Decompress(osgjs));
+                files.Add("model_file.bin", gz.Decompress(mfbin));
+                files.Add("model_file_wireframe.bin", gz.Decompress(mfwbin));
+            }
+            else
+            {
+                Console.WriteLine("[WARNING] Found a new encrypted BINZ format. Importing is impossible at this moment.");
+                files.Add("file.binz", osgjs);
+                files.Add("model_file.binz", mfbin);
+                files.Add("model_file_wireframe.binz", mfwbin);
+            }
 
             // Print a message
             Console.WriteLine("Model files was successfully downloaded.");
@@ -283,9 +293,18 @@ namespace SFTool
                 }
 
                 // Move model files
-                File.Move("file.osgjs", Path.Combine(outputModelDir, "file.osgjs"));
-                File.Move("model_file.bin", Path.Combine(outputModelDir, "model_file.bin"));
-                File.Move("model_file_wireframe.bin", Path.Combine(outputModelDir, "model_file_wireframe.bin"));
+                if (modelConfig["osgjsUrl"].Contains("file.binz"))
+                {
+                    File.Move("file.binz", Path.Combine(outputModelDir, "file.binz"));
+                    File.Move("model_file.binz", Path.Combine(outputModelDir, "model_file.binz"));
+                    File.Move("model_file_wireframe.binz", Path.Combine(outputModelDir, "model_file_wireframe.binz"));
+                }
+                else
+                {
+                    File.Move("file.osgjs", Path.Combine(outputModelDir, "file.osgjs"));
+                    File.Move("model_file.bin", Path.Combine(outputModelDir, "model_file.bin"));
+                    File.Move("model_file_wireframe.bin", Path.Combine(outputModelDir, "model_file_wireframe.bin"));
+                }
 
                 // Move animations first (because all of them always have the same extension so we can filter them)
                 foreach (FileInfo file in new DirectoryInfo(outputDirPath).GetFiles("*.bin"))

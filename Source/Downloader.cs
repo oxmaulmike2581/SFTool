@@ -100,8 +100,17 @@ namespace SFTool
                             }
 
                             // Add additional links
-                            modelData.Add("mfbinUrl", modelData["osgjsUrl"].Replace("file.osgjs.gz", "model_file.bin.gz"));
-                            modelData.Add("mfwbinUrl", modelData["osgjsUrl"].Replace("file.osgjs.gz", "model_file_wireframe.bin.gz"));
+                            // Check for new encrypted BINZ format
+                            if (modelData["osgjsUrl"].Contains("file.binz"))
+                            {
+                                modelData.Add("mfbinUrl", modelData["osgjsUrl"].Replace("file.binz", "model_file.binz"));
+                                modelData.Add("mfwbinUrl", modelData["osgjsUrl"].Replace("file.binz", "model_file_wireframe.binz"));
+                            }
+                            else
+                            {
+                                modelData.Add("mfbinUrl", modelData["osgjsUrl"].Replace("file.osgjs.gz", "model_file.bin.gz"));
+                                modelData.Add("mfwbinUrl", modelData["osgjsUrl"].Replace("file.osgjs.gz", "model_file_wireframe.bin.gz"));
+                            }
 
                             break;
 
