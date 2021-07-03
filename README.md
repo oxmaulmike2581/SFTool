@@ -3,6 +3,8 @@ Tool for working with models from Sketchfab
 <br />
 <br />
 At the moment, only downloading models is supported. In the future, it may be possible to add support for converting to Autodesk FBX format.
+<br />
+If you want to download all models of specified author, first you need to get the list of model uids. You can do that using my second tool named <a href="https://github.com/DARKSIDEOPG/SFUserParser">SFUserParser</a>.
 
 <hr />
 
@@ -46,7 +48,12 @@ This is my first serious application in C#, so the code can be crappy in places 
 
 <hr />
 
-### Changelog:
+### Changelog: <br />
+<strong>1.0.0.4:</strong>
+<ol>
+  <li>Another fix for BINZ downloading (previous fix wasn't work correctly, sorry about that)</li>
+</ol>
+<br />
 <strong>1.0.0.3:</strong>
 <ol>
   <li>Fixed saving error when trying to download a model in the new encrypted BINZ format</li>
