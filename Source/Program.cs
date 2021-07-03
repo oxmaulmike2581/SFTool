@@ -34,12 +34,12 @@ namespace SFTool
                     Console.WriteLine("Usage:");
                     Console.WriteLine("\t SFTool.exe -h model_hash -o output_path");
                     Console.WriteLine("\t OR");
-                    Console.WriteLine("\t SFTool.exe -i links_file -o output_path");
+                    Console.WriteLine("\t SFTool.exe -l links_file -o output_path");
                     Console.WriteLine("");
                     Console.WriteLine("Arguments:");
                     Console.WriteLine("\t -h: \t ");
                     Console.WriteLine("\t     Model hash or whole link.");
-                    Console.WriteLine("\t -i:");
+                    Console.WriteLine("\t -l:");
                     Console.WriteLine("\t     Path to the file with list of links to batch download.");
                     Console.WriteLine("\t -o: (Optional)");
                     Console.WriteLine("\t     Path to the output directory. If does not specified, the current directory will used.");
@@ -145,6 +145,7 @@ namespace SFTool
         public static void ProcessModel(string modelHash, string outputPath)
         {
             // Define variables
+            bool isBINZ = false;
             string configBaseUrl = "https://sketchfab.com/i/models/";
             Dictionary<string, byte[]> files = new Dictionary<string, byte[]>();
 
@@ -180,6 +181,13 @@ namespace SFTool
             // Print an short information about requested model
             Console.WriteLine("Model name: {0} (by {1})", modelConfig["modelName"], modelConfig["userName"]);
 
+            // Initial check for BINZ
+            if (modelConfig["osgjsUrl"].Contains("file.binz"))
+			{
+                isBINZ = true;
+                Console.WriteLine("[WARNING] Found a new encrypted BINZ format. Importing is impossible at this moment.");
+            }
+
             // ==================================================
 
             // Downloading model
@@ -188,7 +196,7 @@ namespace SFTool
             byte[] mfwbin = dn.GetFileData(modelConfig["mfwbinUrl"]);
 
             // Decompressing model and storing in resulting array
-            if (!modelConfig["osgjsUrl"].Contains("file.binz"))
+            if (!isBINZ)
             {
                 files.Add("file.osgjs", gz.Decompress(osgjs));
                 files.Add("model_file.bin", gz.Decompress(mfbin));
@@ -196,7 +204,6 @@ namespace SFTool
             }
             else
             {
-                Console.WriteLine("[WARNING] Found a new encrypted BINZ format. Importing is impossible at this moment.");
                 files.Add("file.binz", osgjs);
                 files.Add("model_file.binz", mfbin);
                 files.Add("model_file_wireframe.binz", mfwbin);
@@ -293,7 +300,7 @@ namespace SFTool
                 }
 
                 // Move model files
-                if (modelConfig["osgjsUrl"].Contains("file.binz"))
+                if (isBINZ)
                 {
                     File.Move("file.binz", Path.Combine(outputModelDir, "file.binz"));
                     File.Move("model_file.binz", Path.Combine(outputModelDir, "model_file.binz"));
