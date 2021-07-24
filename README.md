@@ -36,6 +36,11 @@ If you want to download all models of specified author, first you need to get th
 The BINZ format is new to Sketchfab. It looks like it's just an additional layer of encryption on top of the existing OSGJS and BIN files instead of GZip compression. Work is underway to study it and create a decoder, but it is too early to talk about the timing of its implementation. 
 <br />
 
+I know about many scripts and utilities similar to mine, including those that are somehow capable of bypassing the .binz format.
+Unfortunately, so far not a single author has been able (at least publicly) to draw up a specification of this format.
+Add scripts for browsers or separate ready-made .exe / .py / etc. in my utility I do not want. From the point of view of an integrated approach, the best solution would be to add a full-fledged parser for both binz and osgjs formats.
+<br />
+
 To import the downloaded model, look for the Blender script on Google. Perhaps later, when I implement the conversion of the model into an editable format, this item will be removed.
 <br />
 
