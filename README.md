@@ -1,7 +1,18 @@
 # SFTool
 Tool for working with models from Sketchfab
-<br />
-<br />
+<hr />
+<h3>This tool is officially deprecated. No more updates or support.</h3>
+This is caused because every day the number of models stored in binz format is growing rapidly.<br />
+I know about all methods to convert .binz back to .osgjs/.bin, but I don't want to use it.<br />
+I don't want to add methods that execute code from the browser, whether in the user's default browser or in a sandboxed one.<br />
+A time ago I didn't find any documenation about structure of .binz format, so I can't make a proper parser.<br />
+Understand me, all these methods with launching separate browsers, transferring data from one application to another, and combinations of utilities that are different in their original purpose are terrible crutches that can only be used as a temporary solution.<br />
+So I decided to officially stop the support of my tool and mark it as archived.<br />
+I have not received any requests to stop development or remove the utility, and I hope I never will.<br />
+You can continue to use my utility however you want, but I cannot guarantee that it will work. Its code is open, so if you want to improve it - your time has come.<br />
+This was and remains my first serious application and experience in their development, and I want to move further in this direction.<br />
+I will not leave links to similar software here, but I assure you, it is easy to find it through Google.<br />
+<hr />
 At the moment, only downloading models is supported. In the future, it may be possible to add support for converting to Autodesk FBX format.
 <br />
 If you want to download all models of specified author, first you need to get the list of model uids. You can do that using my second tool named <a href="https://github.com/DARKSIDEOPG/SFUserParser">SFUserParser</a>.
